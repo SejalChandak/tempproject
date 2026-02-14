@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ffe4e6, #fecdd3, #fda4af);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Card container */
+.card-wrapper {
+  perspective: 1200px;
+}
+
+.card {
+  width: 340px;
+  height: 220px;
+  background: #fb7185;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.8s;
+}
+
+.card.open {
+  transform: rotateY(180deg);
+}
+
+/* Message container */
+.message {
+  display: none;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #fff1f2;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.yes { background: #fb7185; color: white; }
+.no { background: white; border: 2px solid #fb7185; position: relative; }
+
+.love-letter {
+  background: #fff1f2;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+  font-style: italic;
+  color: #9f1239;
+}
+
+.heart {
+  position: absolute;
+  color: #fb7185;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh) scale(1); opacity: 1; }
+  to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="public/tum-se-hi.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card-wrapper">
+  <div class="card" id="card" onclick="openCard()">
+    Tap to Open ❤️
+  </div>
+</div>
+
+<div class="message" id="messageBox">
+
+  <h2>Hey Bebu ❤️</h2>
+
+  <p>
+    From the moment you came into my life, everything started feeling more magical.
+    Loving you feels like living inside my favorite fairytale — warm, beautiful,
+    and meant to be. You give me butterflies in the simplest moments, and your love
+    makes my heart feel safe and complete.
+  </p>
+
+  <div class="gallery">
+    <img src="public/photo1.jpg" />
+    <img src="public/photo2.jpg" />
+    <img src="public/photo3.jpg" />
+    <img src="public/photo1.jpg" />
+  </div>
+
+  <div class="love-letter">
+    I truly can’t wait for the day we close the distance and I finally get to hold
+    you for real. I dream about building a life with you — as your girlfriend,
+    your fiancée, and one day your wife. My only wish is that our love, care,
+    and affection keep growing stronger with time. You are my today and all of my tomorrows.
+  </div>
+
+  <h3>Will you be my Valentine? 🌹</h3>
+
+  <button class="yes" onclick="sayYes()">Yes 😍</button>
+  <button class="no" id="noBtn">No 🙈</button>
+
+  <p id="result" style="font-size:18px;color:#be123c;font-weight:bold;"></p>
+
+</div>
+
+<script>
+function openCard() {
+  document.getElementById("card").style.display = "none";
+  document.getElementById("messageBox").style.display = "block";
+}
+
+function sayYes(){
+  document.getElementById("result").innerText =
+    "YAY!!! I love you sooo much ❤️ Get ready for the best Valentine’s ever 💕";
+}
+
+// moving No button
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.position = "relative";
+  noBtn.style.left = (Math.random()*150 - 75) + "px";
+  noBtn.style.top = (Math.random()*150 - 75) + "px";
+});
+
+// floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.innerText = "❤️";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},800);
+</script>
+
+</body>
+</html>
